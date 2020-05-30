@@ -6,28 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="247dp">
 
-    </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="680dp">
+        tools:layout_editor_absoluteY="365dp">
 
-    </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="156dp">
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="676dp">
 
     </com.google.android.material.button.MaterialButton>
 
