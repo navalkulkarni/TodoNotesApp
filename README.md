@@ -10,11 +10,11 @@ Time spent:  hours spent in total
 
 <h2>User Stories:</h2>
 
-The following <h4>required</h4> functionality is completed:
+The following <b>required</b> functionality is completed:
 
-The following <h4>optional</h4> features are implemented:
+The following <b>optional</b> features are implemented:
 
-The following <h4>additional</h4> features are implemented:
+The following <b>additional</b> features are implemented:
 
 <h2>Video Walkthrough</h2>
 
