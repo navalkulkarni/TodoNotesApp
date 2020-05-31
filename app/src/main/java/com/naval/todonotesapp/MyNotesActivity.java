@@ -14,6 +14,10 @@ public class MyNotesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_notes);
 
         Intent intent = getIntent();
+
+        String fullName =  intent.getStringExtra("full_name");
+
+        getSupportActionBar().setTitle(fullName);
         Log.d("IntentDataPass",intent.getStringExtra("full_name"));
     }
 }
