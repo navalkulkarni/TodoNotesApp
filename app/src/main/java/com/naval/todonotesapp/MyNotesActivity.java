@@ -37,7 +37,7 @@ public class MyNotesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String fullName =  intent.getStringExtra("full_name");
+        String fullName =  intent.getStringExtra(AppConstant.FULL_NAME);
 
         getSupportActionBar().setTitle(fullName);
         //Log.d("IntentDataPass",intent.getStringExtra("full_name"));

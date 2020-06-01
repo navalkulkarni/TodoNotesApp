@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(!TextUtils.isEmpty(fullName)&&!TextUtils.isEmpty(userName))
                 {
                     Intent intent = new Intent(LoginActivity.this,MyNotesActivity.class);
-                    intent.putExtra("full_name",fullName);
+                    intent.putExtra(AppConstant.FULL_NAME,fullName);
                     startActivity(intent);
                 }
                 else{
