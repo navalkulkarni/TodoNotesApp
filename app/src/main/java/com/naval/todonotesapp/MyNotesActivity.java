@@ -4,7 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -13,15 +15,21 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import static com.naval.todonotesapp.PrefConstant.FULL_NAME;
+import static com.naval.todonotesapp.PrefConstant.SHARED_PREF_NAME;
+
 public class MyNotesActivity extends AppCompatActivity {
 
     FloatingActionButton fabAddNotes;
     TextView textViewMyNotesTitle,textViewMyNotesDescription;
     String fullName;
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_notes);
+        setupSharedPreference();
 
         bindView();
 
@@ -39,9 +47,17 @@ public class MyNotesActivity extends AppCompatActivity {
 
     }
 
+    private void setupSharedPreference() {
+        sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+    }
+
     private void getIntentData() {
         Intent intent = getIntent();
         fullName =  intent.getStringExtra(AppConstant.FULL_NAME);
+        if(TextUtils.isEmpty(fullName))
+        {
+            fullName = sharedPreferences.getString(FULL_NAME,"");
+        }
     }
 
     private void bindView() {
