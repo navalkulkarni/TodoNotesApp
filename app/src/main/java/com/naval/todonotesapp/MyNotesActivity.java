@@ -17,30 +17,37 @@ public class MyNotesActivity extends AppCompatActivity {
 
     FloatingActionButton fabAddNotes;
     TextView textViewMyNotesTitle,textViewMyNotesDescription;
-
+    String fullName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_notes);
 
-        textViewMyNotesTitle = findViewById(R.id.textViewMyNotesTitle);
-        textViewMyNotesDescription = findViewById(R.id.textViewMyNotesDescription);
-        fabAddNotes = findViewById(R.id.fabAddNotes);
+        bindView();
+
+        getIntentData();
 
         fabAddNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d("MyNotesButton","on click performed");
+
                 setupDialog();
             }
         });
 
-        Intent intent = getIntent();
-
-        String fullName =  intent.getStringExtra(AppConstant.FULL_NAME);
-
         getSupportActionBar().setTitle(fullName);
-        //Log.d("IntentDataPass",intent.getStringExtra("full_name"));
+
+    }
+
+    private void getIntentData() {
+        Intent intent = getIntent();
+        fullName =  intent.getStringExtra(AppConstant.FULL_NAME);
+    }
+
+    private void bindView() {
+        textViewMyNotesTitle = findViewById(R.id.textViewMyNotesTitle);
+        textViewMyNotesDescription = findViewById(R.id.textViewMyNotesDescription);
+        fabAddNotes = findViewById(R.id.fabAddNotes);
     }
 
     private void setupDialog() {
