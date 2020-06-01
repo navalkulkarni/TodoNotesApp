@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Click","On Click Performed");
+                //Log.d("Click","On Click Performed");
                 String fullName = editTextFullName.getText().toString();
                 String userName = editTextUserName.getText().toString();
 
