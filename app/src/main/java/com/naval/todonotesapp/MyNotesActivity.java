@@ -2,6 +2,7 @@ package com.naval.todonotesapp;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.naval.todonotesapp.adapter.NotesAdapter;
 import com.naval.todonotesapp.model.Notes;
 
 import java.util.ArrayList;
@@ -92,10 +94,20 @@ public class MyNotesActivity extends AppCompatActivity {
 
                 list.add(new Notes(t,desc));
 
+                setupRecyclerView();
+
                 alertDialog.hide();
             }
         });
 
         alertDialog.show();
+    }
+
+    private void setupRecyclerView() {
+        NotesAdapter adapter = new NotesAdapter(list);
+        LinearLayoutManager manager = new LinearLayoutManager(MyNotesActivity.this);
+        manager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
     }
 }
