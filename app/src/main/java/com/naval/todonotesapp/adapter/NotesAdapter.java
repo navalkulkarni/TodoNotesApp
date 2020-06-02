@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.naval.todonotesapp.MyNotesActivity;
 import com.naval.todonotesapp.R;
+import com.naval.todonotesapp.clicklisteners.ItemClickListener;
 import com.naval.todonotesapp.model.Notes;
 
 import java.util.List;
@@ -16,9 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
-    List<Notes> notesList;
+    private List<Notes> notesList;
+    private ItemClickListener itemClickListener;
 
-    public NotesAdapter(List<Notes> list){
+    public NotesAdapter(List<Notes> list,ItemClickListener listener){
+        this.itemClickListener = listener;
         this.notesList = list;
     }
 
@@ -31,10 +34,16 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull NotesAdapter.ViewHolder holder, int position) {
-        Notes notes = notesList.get(position);
+        final Notes notes = notesList.get(position);
 
         holder.adapterTextViewTitle.setText(notes.getTitle());
         holder.adapterTextViewDescription.setText(notes.getDescription());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemClickListener.onClick(notes);
+            }
+        });
     }
 
     @Override

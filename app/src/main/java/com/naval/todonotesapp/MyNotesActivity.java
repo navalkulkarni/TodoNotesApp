@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.naval.todonotesapp.adapter.NotesAdapter;
+import com.naval.todonotesapp.clicklisteners.ItemClickListener;
 import com.naval.todonotesapp.model.Notes;
 
 import java.util.ArrayList;
@@ -104,7 +105,14 @@ public class MyNotesActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        NotesAdapter adapter = new NotesAdapter(list);
+        ItemClickListener listener = new ItemClickListener() {
+            @Override
+            public void onClick(Notes note) {
+                Log.d(AppConstant.TAG,note.getTitle());
+            }
+        };
+
+        NotesAdapter adapter = new NotesAdapter(list,listener);
         LinearLayoutManager manager = new LinearLayoutManager(MyNotesActivity.this);
         manager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(manager);
