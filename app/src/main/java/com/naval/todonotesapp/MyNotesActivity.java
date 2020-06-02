@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.naval.todonotesapp.adapter.NotesAdapter;
@@ -23,6 +24,8 @@ import com.naval.todonotesapp.model.Notes;
 
 import java.util.ArrayList;
 
+import static com.naval.todonotesapp.AppConstant.DESCRIPTION;
+import static com.naval.todonotesapp.AppConstant.TITLE;
 import static com.naval.todonotesapp.PrefConstant.FULL_NAME;
 import static com.naval.todonotesapp.PrefConstant.SHARED_PREF_NAME;
 
@@ -93,7 +96,10 @@ public class MyNotesActivity extends AppCompatActivity {
                 String t = editTextTitle.getText().toString();
                 String desc = editTextDescription.getText().toString();
 
-                list.add(new Notes(t,desc));
+                if(!TextUtils.isEmpty(t)&&!TextUtils.isEmpty(desc))
+                    list.add(new Notes(t,desc));
+                else
+                    Toast.makeText(MyNotesActivity.this,"Can't Create an Empty Note",Toast.LENGTH_SHORT).show();
 
                 setupRecyclerView();
 
@@ -108,7 +114,10 @@ public class MyNotesActivity extends AppCompatActivity {
         ItemClickListener listener = new ItemClickListener() {
             @Override
             public void onClick(Notes note) {
-                Log.d(AppConstant.TAG,note.getTitle());
+                Intent intent = new Intent(MyNotesActivity.this,DetailActivity.class);
+                intent.putExtra(TITLE,note.getTitle());
+                intent.putExtra(DESCRIPTION,note.getDescription());
+                startActivity(intent);
             }
         };
 
