@@ -2,6 +2,7 @@ package com.naval.todonotesapp;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,7 +22,7 @@ import static com.naval.todonotesapp.PrefConstant.SHARED_PREF_NAME;
 public class MyNotesActivity extends AppCompatActivity {
 
     FloatingActionButton fabAddNotes;
-    TextView textViewMyNotesTitle,textViewMyNotesDescription;
+    RecyclerView recyclerView;
     String fullName;
     SharedPreferences sharedPreferences;
 
@@ -61,9 +62,9 @@ public class MyNotesActivity extends AppCompatActivity {
     }
 
     private void bindView() {
-        textViewMyNotesTitle = findViewById(R.id.textViewMyNotesTitle);
-        textViewMyNotesDescription = findViewById(R.id.textViewMyNotesDescription);
+
         fabAddNotes = findViewById(R.id.fabAddNotes);
+        recyclerView = findViewById(R.id.recyclerViewNotes);
     }
 
     private void setupDialog() {
@@ -80,8 +81,7 @@ public class MyNotesActivity extends AppCompatActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textViewMyNotesTitle.setText(editTextTitle.getText().toString());
-                textViewMyNotesDescription.setText(editTextDescription.getText().toString());
+
                 alertDialog.hide();
             }
         });
