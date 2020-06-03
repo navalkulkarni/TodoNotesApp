@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.naval.todonotesapp.MyNotesActivity;
 import com.naval.todonotesapp.R;
 import com.naval.todonotesapp.clicklisteners.ItemClickListener;
 import com.naval.todonotesapp.model.Notes;

@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity : AppCompatActivity() {
-    var sharedPreferences: SharedPreferences? = null
+    lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkLoginStatus() {
-        val isLoggedIn = sharedPreferences!!.getBoolean(PrefConstant.LOGGED_IN_STATUS, false)
+        val isLoggedIn = sharedPreferences.getBoolean(PrefConstant.LOGGED_IN_STATUS, false)
         if (isLoggedIn) {
             val intent = Intent(this@SplashActivity, MyNotesActivity::class.java)
             startActivity(intent)
