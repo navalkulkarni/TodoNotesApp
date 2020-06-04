@@ -1,4 +1,4 @@
-package com.naval.todonotesapp
+package com.naval.todonotesapp.utils
 
 object PrefConstant {
     const val SHARED_PREF_NAME = "notes_app_pref"

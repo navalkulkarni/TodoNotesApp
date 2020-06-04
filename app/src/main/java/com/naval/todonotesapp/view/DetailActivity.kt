@@ -1,13 +1,13 @@
-package com.naval.todonotesapp
+package com.naval.todonotesapp.view
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.naval.todonotesapp.AppConstant.DESCRIPTION
-import com.naval.todonotesapp.AppConstant.TAG
-import com.naval.todonotesapp.AppConstant.TITLE
 import com.naval.todonotesapp.R
+import com.naval.todonotesapp.utils.AppConstant.DESCRIPTION
+import com.naval.todonotesapp.utils.AppConstant.TAG
+import com.naval.todonotesapp.utils.AppConstant.TITLE
 
 class DetailActivity : AppCompatActivity() {
 

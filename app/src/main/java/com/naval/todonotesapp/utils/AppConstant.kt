@@ -1,4 +1,4 @@
-package com.naval.todonotesapp
+package com.naval.todonotesapp.utils
 
 object AppConstant {
     const val FULL_NAME = "full_name"

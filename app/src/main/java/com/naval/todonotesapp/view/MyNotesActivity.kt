@@ -1,4 +1,4 @@
-package com.naval.todonotesapp
+package com.naval.todonotesapp.view
 
 import android.content.Context
 import android.content.Intent
@@ -14,13 +14,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.naval.todonotesapp.AppConstant.DESCRIPTION
-import com.naval.todonotesapp.AppConstant.TITLE
-import com.naval.todonotesapp.PrefConstant.FULL_NAME
-import com.naval.todonotesapp.PrefConstant.SHARED_PREF_NAME
+import com.naval.todonotesapp.R
+import com.naval.todonotesapp.utils.AppConstant.DESCRIPTION
+import com.naval.todonotesapp.utils.AppConstant.TITLE
+import com.naval.todonotesapp.utils.PrefConstant.FULL_NAME
+import com.naval.todonotesapp.utils.PrefConstant.SHARED_PREF_NAME
 import com.naval.todonotesapp.adapter.NotesAdapter
 import com.naval.todonotesapp.clicklisteners.ItemClickListener
 import com.naval.todonotesapp.model.Notes
+import com.naval.todonotesapp.utils.AppConstant
 import java.util.*
 
 class MyNotesActivity : AppCompatActivity() {

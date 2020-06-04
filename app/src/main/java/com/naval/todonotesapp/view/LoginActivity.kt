@@ -1,4 +1,4 @@
-package com.naval.todonotesapp
+package com.naval.todonotesapp.view
 
 import android.content.Context
 import android.content.Intent
@@ -10,9 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.naval.todonotesapp.PrefConstant.FULL_NAME
-import com.naval.todonotesapp.PrefConstant.LOGGED_IN_STATUS
-import com.naval.todonotesapp.PrefConstant.SHARED_PREF_NAME
+import com.naval.todonotesapp.R
+import com.naval.todonotesapp.utils.PrefConstant.FULL_NAME
+import com.naval.todonotesapp.utils.PrefConstant.LOGGED_IN_STATUS
+import com.naval.todonotesapp.utils.PrefConstant.SHARED_PREF_NAME
 
 class LoginActivity : AppCompatActivity() {
 
