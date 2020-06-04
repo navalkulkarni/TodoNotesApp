@@ -1,7 +1,9 @@
 package com.naval.todonotesapp.clicklisteners
 
-import com.naval.todonotesapp.model.Notes
+import com.naval.todonotesapp.db.Notes
+
 
 interface ItemClickListener {
-    fun onClick(notes: Notes);
+    fun onClick(note: Notes);
+    fun onUpdate(note:Notes);
 }
