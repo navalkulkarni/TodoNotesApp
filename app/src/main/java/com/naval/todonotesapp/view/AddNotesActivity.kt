@@ -1,8 +1,13 @@
 package com.naval.todonotesapp.view
 
+import android.app.Activity
+import android.content.ContentResolver
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.provider.MediaStore.Images.Media.DATA
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -10,7 +15,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.bumptech.glide.Glide
 import com.naval.todonotesapp.R
+import com.naval.todonotesapp.utils.AppConstant
 
 class AddNotesActivity : AppCompatActivity() {
 
@@ -19,6 +26,9 @@ class AddNotesActivity : AppCompatActivity() {
     lateinit var buttonSubmitAddNotes:Button
     lateinit var imageViewAddNotes:ImageView
     val REQUEST_CODE_GALLERY = 2
+    val REQUEST_CODE_CAMERA = 1
+    var picturePath =""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_notes)
@@ -67,7 +77,24 @@ class AddNotesActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            Activity.RESULT_OK ->{
+                when(resultCode){
+                    REQUEST_CODE_GALLERY ->{
+                        var selectedImage = data?.data
+                        val filePath = arrayOf(MediaStore.Images.Media.DATA)
+                        val contentResolver = contentResolver.query(selectedImage!!,filePath,null,null,null)
+                        contentResolver!!.moveToFirst()
+                        val columnIndex = contentResolver.getColumnIndex(filePath[0])
+                        picturePath = contentResolver.getString(columnIndex)
+                        contentResolver.close()
+                        Glide.with(this).load(picturePath).into(imageViewAddNotes)
+                    }
+                    REQUEST_CODE_CAMERA ->{
 
-
+                    }
+                }
+            }
+        }
     }
 }
