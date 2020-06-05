@@ -3,6 +3,7 @@ package com.naval.todonotesapp.view
 import android.app.Activity
 import android.content.ContentResolver
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,9 +16,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.naval.todonotesapp.R
 import com.naval.todonotesapp.utils.AppConstant
+import java.security.Permission
 
 class AddNotesActivity : AppCompatActivity() {
 
@@ -27,6 +31,7 @@ class AddNotesActivity : AppCompatActivity() {
     lateinit var imageViewAddNotes:ImageView
     val REQUEST_CODE_GALLERY = 2
     val REQUEST_CODE_CAMERA = 1
+    val MY_PERMISSION_CODE = 124
     var picturePath =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +52,39 @@ class AddNotesActivity : AppCompatActivity() {
 
         imageViewAddNotes.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
-                setupDialog()
+                if(checkAndRequestPermission())
+                    setupDialog()
             }
         })
+    }
+
+    private fun checkAndRequestPermission(): Boolean {
+        val cameraPermission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.CAMERA)
+        var externalStorage = ContextCompat.checkSelfPermission(this,android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        val listPermissionsNeeded =ArrayList<String>()
+        if(cameraPermission != PackageManager.PERMISSION_GRANTED)
+            listPermissionsNeeded.add(android.Manifest.permission.CAMERA)
+
+        if(externalStorage != PackageManager.PERMISSION_GRANTED)
+            listPermissionsNeeded.add(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+
+        if(!listPermissionsNeeded.isEmpty())
+        {
+            ActivityCompat.requestPermissions(this,listPermissionsNeeded.toTypedArray<String>(),MY_PERMISSION_CODE)
+            return false
+        }
+
+        return true
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode){
+            MY_PERMISSION_CODE ->{
+                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    setupDialog()
+            }
+        }
     }
 
     private fun setupDialog() {
@@ -64,12 +99,12 @@ class AddNotesActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
 
             }
-
         })
 
         textViewDialogGallery.setOnClickListener(View.OnClickListener {
-            val intent = Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent,REQUEST_CODE_GALLERY)
+            dialog.hide()
         })
 
         dialog.show()
@@ -77,8 +112,7 @@ class AddNotesActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
-            Activity.RESULT_OK ->{
+        if(requestCode == Activity.RESULT_OK){
                 when(resultCode){
                     REQUEST_CODE_GALLERY ->{
                         var selectedImage = data?.data
@@ -95,6 +129,6 @@ class AddNotesActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
+
     }
 }
