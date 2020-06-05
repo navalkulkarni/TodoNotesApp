@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.provider.MediaStore.Images.Media.DATA
 import android.util.Log
@@ -18,10 +19,17 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
+import com.naval.todonotesapp.BuildConfig
 import com.naval.todonotesapp.R
-import com.naval.todonotesapp.utils.AppConstant
+import com.naval.todonotesapp.utils.AppConstant.TAG
+import java.io.File
 import java.security.Permission
+import java.security.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AddNotesActivity : AppCompatActivity() {
 
@@ -95,9 +103,17 @@ class AddNotesActivity : AppCompatActivity() {
         var dialog = AlertDialog.Builder(this)
                 .setView(view).setCancelable(true).create()
 
-        textViewDialogCamera.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-
+        textViewDialogCamera.setOnClickListener(View.OnClickListener {
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            var photoFile : File? = null
+            photoFile = createImage()
+            if(photoFile!=null)
+            {
+                val photoURI = FileProvider.getUriForFile(this,BuildConfig.APPLICATION_ID+".provider",photoFile)
+                picturePath = photoFile.absolutePath
+                Log.d(TAG,picturePath)
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI)
+                startActivityForResult(takePictureIntent,REQUEST_CODE_CAMERA)
             }
         })
 
@@ -110,6 +126,13 @@ class AddNotesActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    private fun createImage(): File? {
+        val timeStamp = SimpleDateFormat("yyyyMMddHHmmss").format(Date())
+        val fileName = "JPEG_" + timeStamp + "_"
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(fileName,".jpg",storageDir)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == Activity.RESULT_OK){
@@ -117,7 +140,8 @@ class AddNotesActivity : AppCompatActivity() {
                     REQUEST_CODE_GALLERY ->{
                         var selectedImage = data?.data
                         val filePath = arrayOf(MediaStore.Images.Media.DATA)
-                        val contentResolver = contentResolver.query(selectedImage!!,filePath,null,null,null)
+                        val contentResolver = contentResolver.
+                        query(selectedImage!!,filePath,null,null,null)
                         contentResolver!!.moveToFirst()
                         val columnIndex = contentResolver.getColumnIndex(filePath[0])
                         picturePath = contentResolver.getString(columnIndex)
@@ -125,7 +149,7 @@ class AddNotesActivity : AppCompatActivity() {
                         Glide.with(this).load(picturePath).into(imageViewAddNotes)
                     }
                     REQUEST_CODE_CAMERA ->{
-
+                        Glide.with(this).load(picturePath).into(imageViewAddNotes)
                     }
                 }
             }
