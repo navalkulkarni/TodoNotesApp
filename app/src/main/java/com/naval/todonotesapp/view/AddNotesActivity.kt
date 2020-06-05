@@ -24,6 +24,17 @@ class AddNotesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_notes)
         bindViews()
         setupClickListeners()
+    }
+
+    private fun bindViews() {
+        editTextAddNotesTitle = findViewById(R.id.editTextAddNotesTitle)
+        editTextAddNotesDescription = findViewById(R.id.editTextAddNotesDescription)
+        buttonSubmitAddNotes = findViewById(R.id.buttonSubmitAddNotes)
+        imageViewAddNotes = findViewById(R.id.imageViewAddNotes)
+    }
+
+    private fun setupClickListeners() {
+
         imageViewAddNotes.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
                 setupDialog()
@@ -39,7 +50,10 @@ class AddNotesActivity : AppCompatActivity() {
         var dialog = AlertDialog.Builder(this)
                 .setView(view).setCancelable(true).create()
 
-        textViewDialogCamera.setOnClickListener(View.OnClickListener {
+        textViewDialogCamera.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+
+            }
 
         })
 
@@ -51,14 +65,4 @@ class AddNotesActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun setupClickListeners() {
-        TODO("Not yet implemented")
-    }
-
-    private fun bindViews() {
-        editTextAddNotesTitle = findViewById(R.id.editTextAddNotesTitle)
-        editTextAddNotesDescription = findViewById(R.id.editTextAddNotesDescription)
-        buttonSubmitAddNotes = findViewById(R.id.buttonSubmitAddNotes)
-        imageViewAddNotes = findViewById(R.id.imageViewAddNotes)
-    }
 }

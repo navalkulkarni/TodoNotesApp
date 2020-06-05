@@ -30,8 +30,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewActivityHeading" />
 
+      <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addNotesTitleLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:hint="Title"
+            android:textColorHint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewAddNotes">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextAddNotesTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textLayoutDialogDescription"
+        android:id="@+id/addNotesDescriptionLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,10 +60,9 @@
         android:layout_marginTop="16dp"
         android:hint="Description"
         android:textColorHint="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@+id/textLayoutDialogTitle"
-        app:layout_constraintStart_toStartOf="@+id/textLayoutDialogTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textLayoutDialogTitle">
-
+        app:layout_constraintEnd_toEndOf="@+id/addNotesTitleLayout"
+        app:layout_constraintStart_toStartOf="@+id/addNotesTitleLayout"
+        app:layout_constraintTop_toBottomOf="@+id/addNotesTitleLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextAddNotesDescription"
@@ -51,25 +70,9 @@
             android:layout_height="match_parent"></com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textLayoutDialogTitle"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Title"
-        android:textColorHint="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewAddNotes">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextAddNotesTitle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonSubmitAddNotes"
@@ -81,10 +84,10 @@
         android:layout_marginTop="16dp"
         android:text="SUBMIT"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textLayoutDialogDescription"
+        app:layout_constraintEnd_toEndOf="@+id/addNotesDescriptionLayout"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textLayoutDialogDescription"
-        app:layout_constraintTop_toBottomOf="@+id/textLayoutDialogDescription"
+        app:layout_constraintStart_toStartOf="@+id/addNotesDescriptionLayout"
+        app:layout_constraintTop_toBottomOf="@+id/addNotesDescriptionLayout"
         app:layout_constraintVertical_bias="1.0" />
 
 
