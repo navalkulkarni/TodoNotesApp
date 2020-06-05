@@ -1,13 +1,10 @@
 package com.naval.todonotesapp.view
 
-import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -28,10 +25,10 @@ import com.naval.todonotesapp.clicklisteners.ItemClickListener
 import com.naval.todonotesapp.db.Notes
 
 import com.naval.todonotesapp.utils.AppConstant
-import com.naval.todonotesapp.utils.AppConstant.TAG
 import java.util.*
 
 class MyNotesActivity : AppCompatActivity() {
+    val REQUEST_CODE = 100
     var fabAddNotes: FloatingActionButton? = null
     var recyclerView: RecyclerView? = null
     var fullName: String? = null
@@ -44,7 +41,11 @@ class MyNotesActivity : AppCompatActivity() {
         bindView()
         intentData
         getNotesFromDb()
-        fabAddNotes!!.setOnClickListener { setupDialog() }
+        fabAddNotes!!.setOnClickListener {
+            //setupDialog()
+            val intent = Intent(this,AddNotesActivity::class.java)
+            startActivityForResult(intent,REQUEST_CODE)
+        }
         supportActionBar!!.title = fullName
         setupRecyclerView()
     }
@@ -79,9 +80,9 @@ class MyNotesActivity : AppCompatActivity() {
         val editTextTitle: EditText
         val editTextDescription: EditText
         val buttonSubmit: Button
-        editTextTitle = view.findViewById(R.id.editTextDialogTitle)
-        editTextDescription = view.findViewById(R.id.editTextDialogDescription)
-        buttonSubmit = view.findViewById(R.id.buttonSubmitDialog)
+        editTextTitle = view.findViewById(R.id.editTextAddNotesTitle)
+        editTextDescription = view.findViewById(R.id.editTextAddNotesDescription)
+        buttonSubmit = view.findViewById(R.id.buttonSubmitAddNotes)
         val alertDialog = AlertDialog.Builder(this).setView(view).setCancelable(false).create()
         buttonSubmit.setOnClickListener {
             val t = editTextTitle.text.toString()

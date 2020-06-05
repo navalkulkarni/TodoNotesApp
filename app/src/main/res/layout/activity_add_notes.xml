@@ -7,7 +7,7 @@
     tools:context=".view.AddNotesActivity">
 
     <TextView
-        android:id="@+id/textViewDialogHeading"
+        android:id="@+id/textViewActivityHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -28,7 +28,7 @@
         android:src="@mipmap/ic_launcher_round"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDialogHeading" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewActivityHeading" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textLayoutDialogDescription"
@@ -46,7 +46,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextDialogDescription"
+            android:id="@+id/editTextAddNotesDescription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
@@ -66,13 +66,13 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewAddNotes">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextDialogTitle"
+            android:id="@+id/editTextAddNotesTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonSubmitDialog"
+        android:id="@+id/buttonSubmitAddNotes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
