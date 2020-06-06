@@ -147,8 +147,9 @@ class AddNotesActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == Activity.RESULT_OK){
-                when(resultCode){
+
+        if(resultCode == Activity.RESULT_OK){
+                when(requestCode){
                     REQUEST_CODE_GALLERY ->{
                         var selectedImage = data?.data
                         val filePath = arrayOf(MediaStore.Images.Media.DATA)
@@ -157,14 +158,16 @@ class AddNotesActivity : AppCompatActivity() {
                         contentResolver!!.moveToFirst()
                         val columnIndex = contentResolver.getColumnIndex(filePath[0])
                         picturePath = contentResolver.getString(columnIndex)
+                        Log.d("MyNotesLog",picturePath)
                         contentResolver.close()
                         Glide.with(this).load(picturePath).into(imageViewAddNotes)
                     }
                     REQUEST_CODE_CAMERA ->{
                         Glide.with(this).load(picturePath).into(imageViewAddNotes)
+                        Log.d("MyNotesLog",picturePath)
                     }
                 }
-            }
+        }
 
     }
 }
