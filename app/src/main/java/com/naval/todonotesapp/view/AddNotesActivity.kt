@@ -111,9 +111,9 @@ class AddNotesActivity : AppCompatActivity() {
             {
                 val photoURI = FileProvider.getUriForFile(this,BuildConfig.APPLICATION_ID+".provider",photoFile)
                 picturePath = photoFile.absolutePath
-                Log.d(TAG,picturePath)
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI)
                 startActivityForResult(takePictureIntent,REQUEST_CODE_CAMERA)
+                dialog.hide()
             }
         })
 
