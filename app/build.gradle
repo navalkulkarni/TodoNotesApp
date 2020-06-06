@@ -6,6 +6,9 @@ apply plugin: 'kotlin-android-extensions'
 //plugins for database
 apply plugin: 'kotlin-kapt'
 
+//plugins for firebase
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 29
 
@@ -53,4 +56,6 @@ dependencies {
     //workmanager dependency (Used for scehduling a task in the background)
     implementation "androidx.work:work-runtime:2.0.1"
 
+    //firebase cloud based messaging dependencies
+    implementation 'com.google.firebase:firebase-messaging:20.2.0'
 }
