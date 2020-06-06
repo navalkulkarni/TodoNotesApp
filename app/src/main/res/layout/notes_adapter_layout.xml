@@ -38,16 +38,25 @@
             android:id="@+id/adapterTextViewTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Mindorks"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewAdapter"
             app:layout_constraintStart_toEndOf="@+id/checkBoxAdapterMarkStatus"
             app:layout_constraintTop_toTopOf="parent">
 
         </TextView>
+
+        <ImageView
+            android:id="@+id/imageViewAdapter"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/adapterTextViewDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/adapterTextViewTitle"
+            app:srcCompat="@mipmap/ic_launcher" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

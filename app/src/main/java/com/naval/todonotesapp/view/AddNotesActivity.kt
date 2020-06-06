@@ -23,7 +23,10 @@ import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.naval.todonotesapp.BuildConfig
 import com.naval.todonotesapp.R
+import com.naval.todonotesapp.utils.AppConstant.DESCRIPTION
+import com.naval.todonotesapp.utils.AppConstant.IMAGEPATH
 import com.naval.todonotesapp.utils.AppConstant.TAG
+import com.naval.todonotesapp.utils.AppConstant.TITLE
 import java.io.File
 import java.security.Permission
 import java.security.Timestamp
@@ -63,6 +66,15 @@ class AddNotesActivity : AppCompatActivity() {
                 if(checkAndRequestPermission())
                     setupDialog()
             }
+        })
+
+        buttonSubmitAddNotes.setOnClickListener(View.OnClickListener {
+            val intent = Intent()
+            intent.putExtra(TITLE,editTextAddNotesTitle.text.toString())
+            intent.putExtra(DESCRIPTION,editTextAddNotesDescription.text.toString())
+            intent.putExtra(IMAGEPATH,picturePath)
+            setResult(Activity.RESULT_OK,intent)
+            finish()
         })
     }
 

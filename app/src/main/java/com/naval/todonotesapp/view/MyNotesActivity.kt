@@ -26,15 +26,18 @@ import com.naval.todonotesapp.clicklisteners.ItemClickListener
 import com.naval.todonotesapp.db.Notes
 
 import com.naval.todonotesapp.utils.AppConstant
+import com.naval.todonotesapp.utils.AppConstant.IMAGEPATH
 import java.util.*
 
 class MyNotesActivity : AppCompatActivity() {
-    val REQUEST_CODE = 100
+
+    val ADD_NOTES_CODE = 100
     var fabAddNotes: FloatingActionButton? = null
     var recyclerView: RecyclerView? = null
     var fullName: String? = null
     var sharedPreferences: SharedPreferences? = null
     var list = ArrayList<Notes>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_notes)
@@ -56,7 +59,7 @@ class MyNotesActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 //setupDialog()
                 val intent = Intent(this@MyNotesActivity,AddNotesActivity::class.java)
-                startActivityForResult(intent,REQUEST_CODE)
+                startActivityForResult(intent,ADD_NOTES_CODE)
             }
         })
     }
@@ -136,5 +139,19 @@ class MyNotesActivity : AppCompatActivity() {
         manager.orientation = RecyclerView.VERTICAL
         recyclerView!!.layoutManager = manager
         recyclerView!!.adapter = adapter
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == ADD_NOTES_CODE){
+            val title = data?.getStringExtra(TITLE)
+            val description = data?.getStringExtra(DESCRIPTION)
+            val imagePath = data?.getStringExtra(IMAGEPATH)
+
+            val notes = Notes(title = title!!,description = description!!,imagePath = imagePath!!,isTaskCompleted = false)
+            addNotestoDb(notes)
+            list.add(notes)
+            recyclerView?.adapter?.notifyItemChanged(list.size-1)
+        }
     }
 }
