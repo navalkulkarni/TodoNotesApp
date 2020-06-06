@@ -14,6 +14,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.Constraints
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.naval.todonotesapp.NotesApp
 import com.naval.todonotesapp.R
@@ -27,7 +30,9 @@ import com.naval.todonotesapp.db.Notes
 
 import com.naval.todonotesapp.utils.AppConstant
 import com.naval.todonotesapp.utils.AppConstant.IMAGEPATH
+import com.naval.todonotesapp.workmanager.MyWorker
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class MyNotesActivity : AppCompatActivity() {
 
@@ -48,6 +53,16 @@ class MyNotesActivity : AppCompatActivity() {
         intentData
         getNotesFromDb()
         setupRecyclerView()
+        setupWorkManager()
+    }
+
+    private fun setupWorkManager() {
+        val constraint = Constraints.Builder().build()
+        val request = PeriodicWorkRequest.
+                      Builder(MyWorker::class.java,15,TimeUnit.MINUTES).
+                      setConstraints(constraint).
+                      build()
+        WorkManager.getInstance().enqueue(request)
     }
 
     private fun setActionBarText() {
