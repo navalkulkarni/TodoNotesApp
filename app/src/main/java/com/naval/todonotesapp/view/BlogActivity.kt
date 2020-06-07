@@ -12,16 +12,42 @@ import com.androidnetworking.interfaces.ParsedRequestListener
 import com.naval.todonotesapp.R
 import com.naval.todonotesapp.adapter.BlogsAdapter
 import com.naval.todonotesapp.model.JsonResponse
+import com.naval.todonotesapp.retrofit.BlogService
+import com.naval.todonotesapp.retrofit.ServiceGenerator
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class BlogActivity : AppCompatActivity() {
 
     lateinit var recyclerView:RecyclerView
-    val TAG = "BlogActivity"
+    val TAG = "BlogLog"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blog)
         bindView()
         getBlogs()
+        //getBlogsFromRetrofit()
+    }
+
+
+
+    private fun getBlogsFromRetrofit() {
+       val service= ServiceGenerator.createService(BlogService::class.java)
+        val call = service.getBlogs()
+        call.enqueue(object: Callback<JsonResponse>{
+
+            override fun onFailure(call: Call<JsonResponse>, t: Throwable) {
+                Log.d(TAG,"Error :"+t.message)
+            }
+
+            override fun onResponse(call: Call<JsonResponse>, response: Response<JsonResponse>) {
+                if(response.isSuccessful)
+                {
+                    setupRecyclerView(response = response.body())
+                }
+            }
+        })
     }
 
     private fun getBlogs() {
@@ -30,7 +56,7 @@ class BlogActivity : AppCompatActivity() {
                 .build()
                 .getAsObject(JsonResponse::class.java,object:ParsedRequestListener<JsonResponse>{
                     override fun onResponse(response: JsonResponse?) {
-                        
+
                         setupRecyclerView(response)
                     }
 
