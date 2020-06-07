@@ -1,7 +1,7 @@
 package com.naval.todonotesapp.model
 
-data class Blog(val title:String,val description:String,val author:String,val imageUrl:String,
+data class Blog(val title:String,val description:String,val author:String,val img_url:String,
 
-                val blogUrl:String,val publishedAt:String) {
+                val blog_url:String,val published_at:String) {
 
 }

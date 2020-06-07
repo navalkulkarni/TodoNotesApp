@@ -14,11 +14,11 @@ import com.naval.todonotesapp.model.Blog
 class BlogsAdapter : RecyclerView.Adapter<BlogsAdapter.ViewHolder> {
 
     private  val blogsList: List<Blog>
-    private val itemClickListener:ItemClickListener
 
-    constructor(blogsList: List<Blog>, itemClickListener: ItemClickListener):super() {
+
+    constructor(blogsList: List<Blog>):super() {
         this.blogsList = blogsList
-        this.itemClickListener = itemClickListener
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,16 +32,16 @@ class BlogsAdapter : RecyclerView.Adapter<BlogsAdapter.ViewHolder> {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val blog = blogsList[position]
-        Glide.with(holder.itemView).load(blog.imageUrl).into(holder.imageViewBlogAdapter)
+        Glide.with(holder.itemView).load(blog.img_url).into(holder.imageViewBlogAdapter)
         holder.blogAdapterTextViewTitle.text = blog.title
         holder.blogAdapterTextViewDescription.text = blog.description
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        var blogAdapterTextViewTitle:TextView = TODO(itemView.findViewById(R.id.blogAdapterTextViewTitle))
-        var blogAdapterTextViewDescription:TextView = TODO(itemView.findViewById(R.id.blogAdapterTextViewDescription))
-        var imageViewBlogAdapter:ImageView = TODO(itemView.findViewById(R.id.imageViewBlogAdapter))
+        var blogAdapterTextViewTitle:TextView = itemView.findViewById(R.id.blogAdapterTextViewTitle)
+        var blogAdapterTextViewDescription:TextView = itemView.findViewById(R.id.blogAdapterTextViewDescription)
+        var imageViewBlogAdapter:ImageView = itemView.findViewById(R.id.imageViewBlogAdapter)
 
     }
 }
