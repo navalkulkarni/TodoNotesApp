@@ -5,8 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
+import android.util.Log
+import android.view.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -30,6 +30,7 @@ import com.naval.todonotesapp.db.Notes
 
 import com.naval.todonotesapp.utils.AppConstant
 import com.naval.todonotesapp.utils.AppConstant.IMAGEPATH
+import com.naval.todonotesapp.utils.AppConstant.TAG
 import com.naval.todonotesapp.workmanager.MyWorker
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -168,5 +169,22 @@ class MyNotesActivity : AppCompatActivity() {
             list.add(notes)
             recyclerView?.adapter?.notifyItemChanged(list.size-1)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        //return super.onCreateOptionsMenu(menu)
+        val inflater : MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item?.itemId){
+            R.id.blog ->{
+                val intent = Intent(this,BlogActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

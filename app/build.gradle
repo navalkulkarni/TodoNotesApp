@@ -58,4 +58,8 @@ dependencies {
 
     //firebase cloud based messaging dependencies
     implementation 'com.google.firebase:firebase-messaging:20.2.0'
+
+    //networking dependency
+    implementation 'com.amitshekhar.android:android-networking:1.0.2'
+
 }
