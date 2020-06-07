@@ -30,7 +30,7 @@ class BlogActivity : AppCompatActivity() {
                 .build()
                 .getAsObject(JsonResponse::class.java,object:ParsedRequestListener<JsonResponse>{
                     override fun onResponse(response: JsonResponse?) {
-                        Log.d(TAG, response!!.data.get(0).title)
+                        
                         setupRecyclerView(response)
                     }
 
