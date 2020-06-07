@@ -25,11 +25,12 @@ class BlogActivity : AppCompatActivity() {
     }
 
     private fun getBlogs() {
-        AndroidNetworking.get("https://www.mocky.io/v2/5926ce9d11000096006ccb30")
+        AndroidNetworking.get("http://www.mocky.io/v2/5926ce9d11000096006ccb30")
                 .setPriority(Priority.HIGH)
                 .build()
                 .getAsObject(JsonResponse::class.java,object:ParsedRequestListener<JsonResponse>{
                     override fun onResponse(response: JsonResponse?) {
+                        Log.d(TAG, response!!.data.get(0).title)
                         setupRecyclerView(response)
                     }
 
