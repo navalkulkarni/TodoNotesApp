@@ -44,7 +44,7 @@ The following <b>Libraries</b> are used:
 
 <div>
 <h2>Video Walkthrough</h2>
- <a href="https://imgur.com/jZKIPXP"><img src="https://i.imgur.com/jZKIPXPl.gif" title="source: imgur.com" /></a>
+ <a href="https://imgur.com/jZKIPXP" targrt="_parent" ><img src="https://i.imgur.com/jZKIPXPl.gif" title="source: imgur.com" /></a>
  </div>
 <h2>App Icon</h2>
 <a href="https://imgur.com/wKtr5Qm"><img src="https://i.imgur.com/wKtr5Qm.png" title="source: imgur.com" /></a>
