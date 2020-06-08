@@ -31,10 +31,22 @@ The following <b>additional</b> features are implemented:
  <li>User can Mark status of a TodoNote as Completed</li>
  <li>Once marked as complete, it will be removed from the list automatically</li>
 </ul>
-<h2>Video Walkthrough</h2>
 
+The following <b>Libraries</b> are used:
+<ul>
+ <li>RetroFit</li>
+ <li>Android FastNetworking</li>
+ <li>Room Database</li>
+<li>Glide for Media Management</li>
+ <li>Firebase Messaging For Notification</li>
+ <li>ViewPager for OnBoarding Activity</li>
+ </ul>
+
+<h2>Video Walkthrough</h2>
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/wd1yvqu"><a href="//imgur.com/a/wd1yvqu">TodoNotesApp Walkthrough</a>
 
 <h2>App Icon</h2>
+<a href="https://imgur.com/wKtr5Qm"><img src="https://i.imgur.com/wKtr5Qm.png" title="source: imgur.com" /></a>
 
 <h2>Notes</h2>
 
