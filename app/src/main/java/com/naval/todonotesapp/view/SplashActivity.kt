@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.naval.todonotesapp.R
+import com.naval.todonotesapp.onboarding.OnboardingActivity
 import com.naval.todonotesapp.utils.PrefConstant
 
 class SplashActivity : AppCompatActivity() {
@@ -48,12 +49,18 @@ class SplashActivity : AppCompatActivity() {
 
     private fun checkLoginStatus() {
         val isLoggedIn = sharedPreferences.getBoolean(PrefConstant.LOGGED_IN_STATUS, false)
+        val isOnBoarded:Boolean  = sharedPreferences.getBoolean(PrefConstant.ONBOARDING,false)
         if (isLoggedIn) {
             val intent = Intent(this@SplashActivity, MyNotesActivity::class.java)
             startActivity(intent)
         } else {
-            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
-            startActivity(intent)
+            if(isOnBoarded){
+                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
+                startActivity(intent)
+            }else{
+                val intent = Intent(this@SplashActivity, OnboardingActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }

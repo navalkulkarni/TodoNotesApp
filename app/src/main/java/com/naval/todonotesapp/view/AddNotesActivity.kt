@@ -158,7 +158,7 @@ class AddNotesActivity : AppCompatActivity() {
                         contentResolver!!.moveToFirst()
                         val columnIndex = contentResolver.getColumnIndex(filePath[0])
                         picturePath = contentResolver.getString(columnIndex)
-                        //Log.d("MyNotesLog",picturePath)
+                        Log.d("MyNotesLog",picturePath)
                         contentResolver.close()
                         Glide.with(this).load(picturePath).into(imageViewAddNotes)
                     }
