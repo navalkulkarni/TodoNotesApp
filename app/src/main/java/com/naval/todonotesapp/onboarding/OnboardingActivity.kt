@@ -18,5 +18,7 @@ class OnboardingActivity : AppCompatActivity() {
 
     private fun bindView() {
         viewPager = findViewById(R.id.viewPagerOnBoarding)
+        val adapter = FragmentAdapter(supportFragmentManager)
+        viewPager.adapter = adapter
     }
 }
