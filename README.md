@@ -44,6 +44,7 @@ The following <b>Libraries</b> are used:
 
 <h2>Video Walkthrough</h2>
 <blockquote class="imgur-embed-pub" lang="en" data-id="a/wd1yvqu"><a href="//imgur.com/a/wd1yvqu">TodoNotesApp Walkthrough</a>
+<blockquote class="imgur-embed-pub" lang="en" data-id="GbcVAC1"><a href="//imgur.com/GbcVAC1">View post on imgur.com</a></blockquote>
 
 <h2>App Icon</h2>
 <a href="https://imgur.com/wKtr5Qm"><img src="https://i.imgur.com/wKtr5Qm.png" title="source: imgur.com" /></a>
