@@ -44,10 +44,16 @@ The following <b>Libraries</b> are used:
 
 <div>
 <h2>Video Walkthrough</h2>
- <a href="https://imgur.com/jZKIPXP" targrt="_blank" ><img src="https://i.imgur.com/jZKIPXPl.gif" title="source: imgur.com" /></a>
- </div>
-<h2>App Icon</h2>
-<a href="https://imgur.com/wKtr5Qm"><img src="https://i.imgur.com/wKtr5Qm.png" title="source: imgur.com" /></a>
+ 
+ 
+
+
+ ![TodoNotesFinalGif](https://user-images.githubusercontent.com/24776023/86087213-42c6ca00-bac1-11ea-939d-271579fa1df1.gif)
+ 
+ 
+
+ 
+ 
 
 <h2>Notes</h2>
 
